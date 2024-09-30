@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-data_path = "C:\\Users\\felip\\Documents\\POS\\Visualisação de dados\\Dashboard\\DashBoard\\houses_to_rent_v2.csv"
+data_path = "houses_to_rent_v2.csv"
 
 dataframe = pd.read_csv(data_path, sep=',')
 
