@@ -1,0 +1,36 @@
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data_path = "C:\\Users\\felip\\Documents\\POS\\Visualisação de dados\\Dashboard\\DashBoard\\houses_to_rent_v2.csv"
+
+dataframe = pd.read_csv(data_path, sep=',')
+
+st.set_page_config(layout='wide')
+st.title("Dashboard para alugue de imoveis")
+
+
+collum1, collum2, collum3 = st.columns(3)
+
+with collum1:
+    total_houses = len(dataframe['rooms'])
+    st.metric(label="Quatidade de imoveis disponiveis", value=total_houses)
+
+with collum2:
+    min_rent = dataframe['rent amount (R$)'].min()
+    st.metric(label="aluguel minimo", value=min_rent)
+
+with collum3:
+    max_rent = dataframe['rent amount (R$)'].max()
+    st.metric(label="aluguel maximo", value= max_rent)
+
+
+#price furnished and not furnished
+avg_price_furnished = dataframe[dataframe['furniture'] == 'furnished']['rent amount (R$)'].mean()
+avg_price_n_furnished = dataframe[dataframe['furniture'] == 'not furnished']['rent amount (R$)'].mean()
+
+#price by city
+avg_price_city = dataframe.groupby('city')['rent amount (R$)'].mean().sort_values(ascending=True)
+
+
+st.bar_chart(avg_price_city, x_label="Media de Preços", y_label="Estados", horizontal=True, height=500)
