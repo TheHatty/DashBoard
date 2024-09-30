@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 
 data_path = "C:\\Users\\felip\\Documents\\POS\\Visualisação de dados\\Dashboard\\DashBoard\\houses_to_rent_v2.csv"
 
@@ -9,7 +8,7 @@ dataframe = pd.read_csv(data_path, sep=',')
 st.set_page_config(layout='wide')
 st.title("Dashboard para alugue de imoveis")
 
-
+#defining 3 collums for standout values
 collum1, collum2, collum3 = st.columns(3)
 
 with collum1:
@@ -32,5 +31,5 @@ avg_price_n_furnished = dataframe[dataframe['furniture'] == 'not furnished']['re
 #price by city
 avg_price_city = dataframe.groupby('city')['rent amount (R$)'].mean().sort_values(ascending=True)
 
-
+#plot a bar graph to streamlit
 st.bar_chart(avg_price_city, x_label="Media de Preços", y_label="Estados", horizontal=True, height=500)
