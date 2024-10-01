@@ -42,6 +42,7 @@ avg_price_city = dataframe.groupby('city')['rent amount (R$)'].mean().sort_value
 #defining main per city graph
 st.bar_chart(avg_price_city, x_label="Media de Preços", y_label="Estados", horizontal=True, height=500, width=800)
 
+#title of the second part of the graph's
 st.title("Media de preços por aceitação de animais e mobilia")
 
 #defining 2 collums
@@ -49,8 +50,8 @@ collum1b, collum2b = st.columns(2)
 
 with collum1b:
     #plot a bar graph to streamlit
-    st.bar_chart(avg_price_animal, height=500)
+    st.bar_chart(avg_price_animal, height=500, color="#d6b588")
 
 with collum2b:
-    st.bar_chart(avg_price_furniture, height=500)
+    st.bar_chart(avg_price_furniture, height=500, color="#80ef80")
  
